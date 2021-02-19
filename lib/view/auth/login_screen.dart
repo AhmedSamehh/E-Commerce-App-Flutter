@@ -1,4 +1,6 @@
 import 'package:ECommerce/constant.dart';
+import 'package:ECommerce/view/widgets/custom_button.dart';
+import 'package:ECommerce/view/widgets/custom_social_button.dart';
 import 'package:ECommerce/view/widgets/custom_text.dart';
 import 'package:ECommerce/view/widgets/custom_textformfield.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,9 +31,16 @@ class LoginScreen extends StatelessWidget {
             CustomTextFormField(text: "E-mail", hint: "ahmedwael@gmail.com"),
             SizedBox(height: 20),
             CustomTextFormField(text: "Password", hint: "********"),
-            SizedBox(height: 10),
+            SizedBox(height: 15),
             CustomText(text: "Forgot password?", fontSize: 14, alignment: Alignment.topRight),
-
+            SizedBox(height: 20),
+            CustomButton(text: "SIGN IN", textColor: Colors.white, onPressed: (){}),
+            SizedBox(height: 30),
+            CustomText(text: "- OR -", color: Colors.grey, fontSize: 20, alignment: Alignment.center,),
+            SizedBox(height: 30),
+            CustomSocialButton(text: "Sign in with Facebook", imageAsset:"lib/assets/fb.png", onPressed: (){}),
+            SizedBox(height: 40),
+            CustomSocialButton(text: "Sign in with Google", imageAsset:"lib/assets/google.png", onPressed: (){})
           ],
         ),
       )
