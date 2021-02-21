@@ -1,12 +1,14 @@
 import 'package:ECommerce/constant.dart';
+import 'package:ECommerce/core/view_model/auth_view_model.dart';
 import 'package:ECommerce/view/widgets/custom_button.dart';
 import 'package:ECommerce/view/widgets/custom_social_button.dart';
 import 'package:ECommerce/view/widgets/custom_text.dart';
 import 'package:ECommerce/view/widgets/custom_textformfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends GetWidget<AuthViewModel> {
 	@override
   Widget build(BuildContext context){
     return Scaffold(
@@ -38,9 +40,19 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 30),
             CustomText(text: "- OR -", color: Colors.grey, fontSize: 20, alignment: Alignment.center,),
             SizedBox(height: 30),
-            CustomSocialButton(text: "Sign in with Facebook", imageAsset:"lib/assets/fb.png", onPressed: (){}),
+            CustomSocialButton(
+              text: "Sign in with Facebook",
+              imageAsset:"lib/assets/fb.png",
+              onPressed: (){}
+            ),
             SizedBox(height: 40),
-            CustomSocialButton(text: "Sign in with Google", imageAsset:"lib/assets/google.png", onPressed: (){})
+            CustomSocialButton(
+              text: "Sign in with Google",
+              imageAsset:"lib/assets/google.png",
+              onPressed: (){
+                controller.googleSignInMethod();
+              }
+            )
           ],
         ),
       )
