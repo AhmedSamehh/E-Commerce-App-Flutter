@@ -1,5 +1,6 @@
 import 'package:ECommerce/constant.dart';
 import 'package:ECommerce/core/view_model/auth_view_model.dart';
+import 'package:ECommerce/view/auth/register_view.dart';
 import 'package:ECommerce/view/widgets/custom_button.dart';
 import 'package:ECommerce/view/widgets/custom_social_button.dart';
 import 'package:ECommerce/view/widgets/custom_text.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends GetWidget<AuthViewModel> {
+class LoginView extends GetWidget<AuthViewModel> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String email, password;
 
@@ -30,7 +31,16 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomText(text: "Welcome,", fontSize: 30),
-                    CustomText(text: "Sign Up", fontSize: 18, color: primaryColor),
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(RegisterView());
+                      },
+                      child: CustomText(
+                        text: "Sign Up",
+                        fontSize: 18,
+                        color: primaryColor
+                      )
+                    ),
                   ],
                 ),
                 SizedBox(height: 10),

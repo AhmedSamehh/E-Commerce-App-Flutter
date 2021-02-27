@@ -1,3 +1,5 @@
+import 'package:ECommerce/core/service/firestore_user.dart';
+import 'package:ECommerce/model/user.dart';
 import 'package:ECommerce/view/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +42,10 @@ class AuthViewModel extends GetxController{
       accessToken: googleSignInAuthentication.accessToken,
       idToken: googleSignInAuthentication.idToken
     );
-    await _firebaseAuth.signInWithCredential(credential);
+    await _firebaseAuth.signInWithCredential(credential).then((user) {
+      saveUser(user);
+      Get.offAll(HomeScreen());
+    });
   }
 
   void facebookLoginMethod() async{
@@ -48,7 +53,10 @@ class AuthViewModel extends GetxController{
     final accessToken = result.accessToken.token;
     if(result.status == FacebookLoginStatus.loggedIn){
       final facebookCredential = FacebookAuthProvider.credential(accessToken);
-      await _firebaseAuth.signInWithCredential(facebookCredential);
+      await _firebaseAuth.signInWithCredential(facebookCredential).then((user) {
+        saveUser(user);
+        Get.offAll(HomeScreen());
+      });
     }
   }
 
@@ -63,5 +71,28 @@ class AuthViewModel extends GetxController{
       print(e.message);
       Get.snackbar('Error login account', e.message,backgroundColor: Colors.red, colorText: Colors.white, snackPosition: SnackPosition.BOTTOM);
     }
+  }
+
+  void createAccount() async{
+    try{
+      await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password).then((user) async {
+        saveUser(user);
+      });
+      Get.offAll(HomeScreen());
+    }
+    catch(e){
+      print(e.message);
+      Get.snackbar('Error login account', e.message,backgroundColor: Colors.red, colorText: Colors.white, snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
+  void saveUser(UserCredential userCredential) async{
+    UserModel user = UserModel(
+      userId: userCredential.user.uid,
+      email: userCredential.user.email,
+      name: name != null ? name : userCredential.user.displayName,
+      img: '',
+    );
+    await FirestoreUser().addUserToFirestore(user);
   }
 }

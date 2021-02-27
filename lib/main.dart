@@ -1,5 +1,5 @@
 import 'package:ECommerce/core/util/binding.dart';
-import 'package:ECommerce/view/auth/login_screen.dart';
+import 'package:ECommerce/view/auth/login_view.dart';
 import 'package:ECommerce/view/control_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

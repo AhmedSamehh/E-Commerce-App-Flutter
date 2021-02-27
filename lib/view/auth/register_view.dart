@@ -1,11 +1,16 @@
+import 'package:ECommerce/constant.dart';
 import 'package:ECommerce/core/view_model/auth_view_model.dart';
+import 'package:ECommerce/view/auth/login_view.dart';
+import 'package:ECommerce/view/widgets/custom_button.dart';
+import 'package:ECommerce/view/widgets/custom_social_button.dart';
+import 'package:ECommerce/view/widgets/custom_text.dart';
+import 'package:ECommerce/view/widgets/custom_textformfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RegisterScreen extends GetWidget<AuthViewModel> {
+class RegisterView extends GetWidget<AuthViewModel> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String email, password;
 
   @override
   Widget build(BuildContext context){
@@ -13,6 +18,15 @@ class RegisterScreen extends GetWidget<AuthViewModel> {
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.white,
+          leading: GestureDetector(
+            onTap: (){
+              Get.off(LoginView());
+            },
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black
+            )
+          ),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -21,16 +35,21 @@ class RegisterScreen extends GetWidget<AuthViewModel> {
               key: _formKey,
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomText(text: "Welcome,", fontSize: 30),
-                      CustomText(text: "Sign Up", fontSize: 18, color: primaryColor),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  CustomText(text: "Sign in to continue", color: Colors.grey, fontSize: 14),
+                  CustomText(text: "Sign Up,", fontSize: 30),
                   SizedBox(height: 30),
+                  CustomTextFormField(
+                    text: "Name",
+                    hint: "Ahmed Wael",
+                    onSaved: (value){
+                      controller.name = value;
+                    },
+                    validator: (value){
+                      if(value == null){
+                        print('ERROR');
+                      }
+                    },
+                  ),
+                  SizedBox(height: 20),
                   CustomTextFormField(
                     text: "E-mail",
                     hint: "ahmedwael@gmail.com",
@@ -56,37 +75,17 @@ class RegisterScreen extends GetWidget<AuthViewModel> {
                       }
                     },
                   ),
-                  SizedBox(height: 15),
-                  CustomText(text: "Forgot password?", fontSize: 14, alignment: Alignment.topRight),
                   SizedBox(height: 20),
                   CustomButton(
-                      text: "SIGN IN",
+                      text: "SIGN UP",
                       textColor: Colors.white,
                       onPressed: (){
                         _formKey.currentState.save();
                         if(_formKey.currentState.validate()){
-                          controller.signInUsingEmailAndPassword();
+                          controller.createAccount();
                         }
                       }
                   ),
-                  SizedBox(height: 30),
-                  CustomText(text: "- OR -", color: Colors.grey, fontSize: 20, alignment: Alignment.center,),
-                  SizedBox(height: 30),
-                  CustomSocialButton(
-                      text: "Sign in with Facebook",
-                      imageAsset:"lib/assets/fb.png",
-                      onPressed: (){
-                        controller.facebookLoginMethod();
-                      }
-                  ),
-                  SizedBox(height: 40),
-                  CustomSocialButton(
-                      text: "Sign in with Google",
-                      imageAsset:"lib/assets/google.png",
-                      onPressed: (){
-                        controller.googleSignInMethod();
-                      }
-                  )
                 ],
               ),
             ),
