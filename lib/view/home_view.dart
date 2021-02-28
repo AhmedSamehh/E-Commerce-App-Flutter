@@ -1,6 +1,8 @@
+import 'package:ECommerce/core/view_model/control_view_model.dart';
 import 'package:ECommerce/view/widgets/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<String> list = ["Shoes","Shoes","Shoes","Shoes","Shoes","Shoes","Shoes"];
@@ -64,7 +66,10 @@ class HomeScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width*0.4,
             child: Column(
               children: [
-                Image.asset("lib/assets/iphone12.jpg", fit: BoxFit.fill),
+                Container(
+                  decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade300)),
+                  child: Image.asset("lib/assets/iphone12.jpg", fit: BoxFit.fill)
+                ),
                 SizedBox(height: 5),
                 CustomText(text: "iPhone 12"),
                 SizedBox(height: 5),
@@ -76,35 +81,38 @@ class HomeScreen extends StatelessWidget {
           );
         },
         separatorBuilder: (BuildContext context, int index){
-          return SizedBox(width: 25);
+          return SizedBox(width: 20);
         },
       ),
     );
   }
 
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.only(top: 80, left: 20, right: 20),
-        child:Column(
-          children: [
-            _searchTextFormField(),
-            SizedBox(height: 30),
-            CustomText(text: "Categories"),
-            SizedBox(height: 30),
-            _categoriesListView(),
-            SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomText(text: "Best Selling", fontSize: 18),
-                CustomText(text: "See All", fontSize: 16)
-              ],
-            ),
-            SizedBox(height: 30),
-            _productsListView()
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(top: 80, left: 20, right: 20),
+          child:Column(
+            children: [
+              _searchTextFormField(),
+              SizedBox(height: 30),
+              CustomText(text: "Categories"),
+              SizedBox(height: 30),
+              _categoriesListView(),
+              SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomText(text: "Best Selling", fontSize: 18),
+                  CustomText(text: "See All", fontSize: 16)
+                ],
+              ),
+              SizedBox(height: 30),
+              _productsListView()
+            ],
+          ),
         ),
       )
     );
