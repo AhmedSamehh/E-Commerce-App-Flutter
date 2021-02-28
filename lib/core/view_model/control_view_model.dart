@@ -1,13 +1,13 @@
 import 'package:ECommerce/view/cart_view.dart';
-import 'package:ECommerce/view/home_screen.dart';
+import 'package:ECommerce/view/home_view.dart';
 import 'package:ECommerce/view/profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class HomeViewModel extends GetxController {
+class ControlViewModel extends GetxController {
   int _navigatorValue = 0;
 
-  Widget _currentView = HomeScreen();
+  Widget _currentView = HomeView();
 
   get navigatorValue => _navigatorValue;
   get currentView => _currentView;
@@ -16,7 +16,7 @@ class HomeViewModel extends GetxController {
     _navigatorValue = selectedValue;
     switch (selectedValue) {
       case 0: {
-        _currentView = HomeScreen();
+        _currentView = HomeView();
         break;
       }
       case 1: {

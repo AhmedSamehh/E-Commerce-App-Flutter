@@ -1,6 +1,6 @@
 import 'package:ECommerce/core/service/firestore_user.dart';
 import 'package:ECommerce/model/user.dart';
-import 'package:ECommerce/view/home_screen.dart';
+import 'package:ECommerce/view/home_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
@@ -44,7 +44,7 @@ class AuthViewModel extends GetxController{
     );
     await _firebaseAuth.signInWithCredential(credential).then((user) {
       saveUser(user);
-      Get.offAll(HomeScreen());
+      Get.offAll(HomeView());
     });
   }
 
@@ -55,7 +55,7 @@ class AuthViewModel extends GetxController{
       final facebookCredential = FacebookAuthProvider.credential(accessToken);
       await _firebaseAuth.signInWithCredential(facebookCredential).then((user) {
         saveUser(user);
-        Get.offAll(HomeScreen());
+        Get.offAll(HomeView());
       });
     }
   }
@@ -64,7 +64,7 @@ class AuthViewModel extends GetxController{
     try{
       await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password).then((value) {
         print(value);
-        Get.offAll(HomeScreen());
+        Get.offAll(HomeView());
       });
     }
     catch(e){
@@ -78,7 +78,7 @@ class AuthViewModel extends GetxController{
       await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password).then((user) async {
         saveUser(user);
       });
-      Get.offAll(HomeScreen());
+      Get.offAll(HomeView());
     }
     catch(e){
       print(e.message);

@@ -101,7 +101,8 @@ class LoginView extends GetWidget<AuthViewModel> {
                   onPressed: (){
                     controller.googleSignInMethod();
                   }
-                )
+                ),
+                SizedBox(height: 40),
               ],
             ),
           ),

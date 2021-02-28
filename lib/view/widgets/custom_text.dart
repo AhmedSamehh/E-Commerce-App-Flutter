@@ -13,7 +13,7 @@ class CustomText extends StatelessWidget{
   Widget build (BuildContext context){
     return Container(
       alignment: alignment,
-      child: Text(text, style: TextStyle(color: color, fontSize: fontSize))
+      child: Text(text, style: TextStyle(color: color, fontSize: fontSize), maxLines: 1)
     );
   }
 }
