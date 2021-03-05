@@ -1,5 +1,6 @@
 import 'package:ECommerce/core/view_model/control_view_model.dart';
 import 'package:ECommerce/core/view_model/home_view_model.dart';
+import 'package:ECommerce/view/product_details_view.dart';
 import 'package:ECommerce/view/widgets/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,9 @@ class HomeView extends StatelessWidget {
       ),
       child: TextFormField(
         decoration: InputDecoration(
-            border: InputBorder.none,
-            prefixIcon: Icon(Icons.search, color: Colors.black,)
+          hintText: "Search Products..",
+          border: InputBorder.none,
+          prefixIcon: Icon(Icons.search, color: Colors.black,)
         ),
       ),
     );
@@ -67,22 +69,32 @@ class HomeView extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: controller.products.length,
           itemBuilder: (context, index){
-            return Container(
-              width: MediaQuery.of(context).size.width*0.4,
-              child: Column(
-                children: [
-                  Container(
-                    height: 200,
-                    decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade300)),
-                    child: Image.network(controller.products[index].imageUrl, fit: BoxFit.fill)
-                  ),
-                  SizedBox(height: 5),
-                  CustomText(text: controller.products[index].title),
-                  SizedBox(height: 5),
-                  CustomText(text: controller.products[index].desc, fontSize: 14, color: Colors.grey),
-                  SizedBox(height: 5),
-                  CustomText(text: controller.products[index].price+" EGP", color: Colors.green),
-                ],
+            return GestureDetector(
+              onTap: (){
+                Get.to(ProductDetailsView(product: controller.products[index]));
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width*0.4,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 200,
+                      decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade300)),
+                      child: Image.network(controller.products[index].imageUrl, fit: BoxFit.fill)
+                    ),
+                    SizedBox(height: 5),
+                    CustomText(text: controller.products[index].title),
+                    SizedBox(height: 5),
+                    CustomText(
+                      text: controller.products[index].desc,
+                      fontSize: 14,
+                      color: Colors.grey,
+                      maxLines: 1,
+                    ),
+                    SizedBox(height: 5),
+                    CustomText(text: controller.products[index].price+" EGP", color: Colors.green),
+                  ],
+                ),
               ),
             );
           },
