@@ -71,12 +71,16 @@ class ProductDetailsView extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 30),
-                    CustomText(
-                        text: "Details",
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
-                    SizedBox(height: 20),
-                    CustomText(text: product.desc, height: 1.5),
+                    Column(
+                      children: [
+                        CustomText(
+                            text: "Details",
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                        SizedBox(height: 20),
+                        CustomText(text: product.desc, height: 1.5),
+                      ],
+                    ),
                   ],
                 ),
               ),
