@@ -1,9 +1,13 @@
 import 'package:ECommerce/constant.dart';
+import 'package:ECommerce/core/view_model/cart_view_model.dart';
+import 'package:ECommerce/model/cart_product.dart';
 import 'package:ECommerce/model/product.dart';
+import 'package:ECommerce/view/cart_view.dart';
 import 'package:ECommerce/view/widgets/custom_button.dart';
 import 'package:ECommerce/view/widgets/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductDetailsView extends StatelessWidget {
   ProductModel product;
@@ -103,10 +107,21 @@ class ProductDetailsView extends StatelessWidget {
                     ),
                   ),
                   // SizedBox(width: 50),
-                  Expanded(
-                    child: CustomButton(
-                        text: "ADD", textColor: Colors.white, onPressed: () {}
-                        ),
+                  GetBuilder<CartViewModel>(
+                    init: CartViewModel(),
+                    builder: (controller) => Expanded(
+                      child: CustomButton(
+                      text: "ADD", textColor: Colors.white, onPressed: () {
+                        controller.addProductToCart(
+                          CartProductModel(
+                            title: product.title,
+                            imageUrl: product.imageUrl,
+                            price: product.price,
+                            quantity: 1
+                          )
+                        );
+                      }),
+                    ),
                   )
                 ],
               ),

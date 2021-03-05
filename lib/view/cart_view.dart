@@ -1,4 +1,5 @@
 import 'package:ECommerce/constant.dart';
+import 'package:ECommerce/core/view_model/cart_view_model.dart';
 import 'package:ECommerce/core/view_model/home_view_model.dart';
 import 'package:ECommerce/view/widgets/custom_button.dart';
 import 'package:ECommerce/view/widgets/custom_text.dart';
@@ -9,19 +10,20 @@ import 'package:get/get.dart';
 class CartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeViewModel>(
+    return GetBuilder<CartViewModel>(
+      init: CartViewModel(),
       builder: (controller) {
         return Scaffold(
           body: Column(
             children: [
               Expanded(
                 child: ListView.separated(
-                    itemCount: controller.products.length,
+                    itemCount: controller.productsList.length,
                     itemBuilder: (context, index) {
                       return Container(
                         child: Row(
                           children: [
-                            Image.network(controller.products[index].imageUrl,
+                            Image.network(controller.productsList[index].imageUrl,
                                 fit: BoxFit.fill,
                                 width: MediaQuery.of(context).size.width * 0.3,
                                 height:
@@ -33,12 +35,12 @@ class CartView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CustomText(
-                                      text: controller.products[index].title,
+                                      text: controller.productsList[index].title,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                   SizedBox(height: 5),
                                   CustomText(
-                                    text: controller.products[index].price +
+                                    text: controller.productsList[index].price +
                                         " EGP",
                                     color: primaryColor,
                                   ),
@@ -53,7 +55,11 @@ class CartView extends StatelessWidget {
                                       children: [
                                         Icon(Icons.add),
                                         SizedBox(width: 20),
-                                        CustomText(text: "0"),
+                                        CustomText(
+                                            text: controller.
+                                            productsList[index].quantity
+                                                .toString()
+                                        ),
                                         SizedBox(width: 20),
                                         Padding(
                                           padding:
