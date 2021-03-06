@@ -11,7 +11,7 @@ class CartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartViewModel>(
-      init: CartViewModel(),
+      init: Get.find(),
       builder: (controller) {
         return Scaffold(
           body: Column(
@@ -45,29 +45,37 @@ class CartView extends StatelessWidget {
                                     color: primaryColor,
                                   ),
                                   SizedBox(height: 10),
-                                  Container(
-                                    color: Colors.grey.shade200,
-                                    padding: EdgeInsets.all(5),
-                                    width: 150,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.add),
-                                        SizedBox(width: 20),
-                                        CustomText(
-                                            text: controller.
-                                            productsList[index].quantity
-                                                .toString()
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    children: [
+                                      MaterialButton(
+                                        onPressed: () {
+                                          controller.increaseQuantity(index);
+                                        },
+                                        color: Colors.black,
+                                        textColor: Colors.white,
+                                        child: Icon(Icons.add, size: 20),
+                                        shape: CircleBorder(),
+                                      ),
+                                      CustomText(
+                                          text: controller.
+                                          productsList[index].quantity
+                                              .toString()
+                                      ),
+                                      MaterialButton(
+                                        onPressed: () {
+                                          controller.decreaseQuantity(index);
+                                        },
+                                        color: Colors.black,
+                                        textColor: Colors.white,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(bottom:15),
+                                          child: Icon(Icons.minimize, size: 20),
                                         ),
-                                        SizedBox(width: 20),
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.only(bottom: 15.0),
-                                          child: Icon(Icons.minimize),
-                                        )
-                                      ],
-                                    ),
+                                        shape: CircleBorder(),
+                                      ),
+                                    ],
                                   )
                                 ],
                               ),
@@ -89,8 +97,10 @@ class CartView extends StatelessWidget {
                       child: Column(
                         children: [
                           CustomText(text: "TOTAL", color: Colors.grey),
-                          CustomText(
-                              text: "1000 EGP", color: primaryColor
+                          GetBuilder<CartViewModel>(
+                            builder: (controller) => CustomText(
+                                text: controller.totalPrice.toString(), color: primaryColor
+                            ),
                           ),
                         ],
                       ),

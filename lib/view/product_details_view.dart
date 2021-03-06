@@ -108,12 +108,13 @@ class ProductDetailsView extends StatelessWidget {
                   ),
                   // SizedBox(width: 50),
                   GetBuilder<CartViewModel>(
-                    init: CartViewModel(),
+                    init: Get.find(),
                     builder: (controller) => Expanded(
                       child: CustomButton(
                       text: "ADD", textColor: Colors.white, onPressed: () {
                         controller.addProductToCart(
                           CartProductModel(
+                            productId: product.productId,
                             title: product.title,
                             imageUrl: product.imageUrl,
                             price: product.price,

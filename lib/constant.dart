@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 final String TABLE_CART_PRODUCTS = 'cartProducts';
+final String COLUMN_ID = 'productId';
 final String COLUMN_TITLE = 'title';
 final String COLUMN_QUANTITY = 'quantity';
 final String COLUMN_IMAGEURL = 'imageUrl';

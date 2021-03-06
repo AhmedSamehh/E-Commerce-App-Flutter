@@ -8,6 +8,7 @@ class ProductModel {
   String imageUrl;
   Color color;
   String size;
+  String productId;
 
   ProductModel({
       this.title,
@@ -15,7 +16,9 @@ class ProductModel {
       this.price,
       this.imageUrl,
       this.color,
-      this.size});
+      this.size,
+      this.productId
+  });
 
   ProductModel.fromJson(Map<dynamic, dynamic> map){
     if(map == null ){
@@ -27,6 +30,7 @@ class ProductModel {
     imageUrl = map['imageUrl'];
     color = HexColor.fromHex(map['color']);
     size = map['size'];
+    productId = map['productId'];
   }
 
   Map<dynamic,dynamic> toJson(){
@@ -37,6 +41,7 @@ class ProductModel {
       "imageUrl": imageUrl,
       "color": color,
       "size": size,
+      "productId": productId,
     };
   }
 }

@@ -24,7 +24,8 @@ class CartDatabaseHelper {
       onCreate: (Database db, int version) async{
         await db.execute('''
         CREATE TABLE $TABLE_CART_PRODUCTS
-        ($COLUMN_TITLE TEXT NOT NULL,
+        ($COLUMN_ID TEXT NOT NULL,
+         $COLUMN_TITLE TEXT NOT NULL,
          $COLUMN_IMAGEURL TEXT NOT NULL,
          $COLUMN_PRICE TEXT NOT NULL,
          $COLUMN_QUANTITY INTEGER NOT NULL)
@@ -50,5 +51,11 @@ class CartDatabaseHelper {
         maps.map((product) => CartProductModel.fromJson(product)).toList()
         :[];
     return productsList;
+  }
+
+  updateProduct(CartProductModel cartProduct) async{
+    var dbClient = await database;
+    return await dbClient.update(TABLE_CART_PRODUCTS, cartProduct.toJson(),
+    where: '$COLUMN_ID = ?', whereArgs: [cartProduct.productId]);
   }
 }
