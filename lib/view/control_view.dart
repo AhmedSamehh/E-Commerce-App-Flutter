@@ -3,7 +3,7 @@ import 'package:ECommerce/core/view_model/control_view_model.dart';
 import 'package:ECommerce/view/auth/login_view.dart';
 import 'package:ECommerce/view/cart_view.dart';
 import 'package:ECommerce/view/home_view.dart';
-import 'package:ECommerce/view/profile_view.dart';
+import 'package:ECommerce/view/account_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

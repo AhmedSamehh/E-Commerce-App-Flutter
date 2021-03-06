@@ -1,5 +1,7 @@
 import 'package:ECommerce/core/service/firestore_user.dart';
 import 'package:ECommerce/model/user.dart';
+import 'package:ECommerce/util/local_storage_data.dart';
+import 'package:ECommerce/view/control_view.dart';
 import 'package:ECommerce/view/home_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +15,9 @@ class AuthViewModel extends GetxController{
   FacebookLogin _facebookLogin = FacebookLogin();
   String email, password, name;
   Rx<User> _user = Rx<User>();
-
   String get user => _user.value?.email;
+  final LocalStorageData localStorageData = Get.find();
+
   @override
   void onInit() {
     super.onInit();
@@ -44,7 +47,7 @@ class AuthViewModel extends GetxController{
     );
     await _firebaseAuth.signInWithCredential(credential).then((user) {
       saveUser(user);
-      Get.offAll(HomeView());
+      Get.offAll(ControlView());
     });
   }
 
@@ -55,16 +58,19 @@ class AuthViewModel extends GetxController{
       final facebookCredential = FacebookAuthProvider.credential(accessToken);
       await _firebaseAuth.signInWithCredential(facebookCredential).then((user) {
         saveUser(user);
-        Get.offAll(HomeView());
+        Get.offAll(ControlView());
       });
     }
   }
 
   void signInUsingEmailAndPassword()async{
     try{
-      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password).then((value) {
+      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password).then((value) async{
         print(value);
-        Get.offAll(HomeView());
+        await FirestoreUser().getCurrentUser(value.user.uid).then((value) {
+          setUser(UserModel.fromJson(value.data()));
+        });
+        Get.offAll(ControlView());
       });
     }
     catch(e){
@@ -78,7 +84,7 @@ class AuthViewModel extends GetxController{
       await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password).then((user) async {
         saveUser(user);
       });
-      Get.offAll(HomeView());
+      Get.offAll(ControlView());
     }
     catch(e){
       print(e.message);
@@ -94,5 +100,10 @@ class AuthViewModel extends GetxController{
       img: '',
     );
     await FirestoreUser().addUserToFirestore(user);
+    setUser(user);
+  }
+
+  void setUser(UserModel user) async{
+    await localStorageData.setUser(user);
   }
 }

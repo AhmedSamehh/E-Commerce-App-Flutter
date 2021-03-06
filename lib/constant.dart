@@ -6,4 +6,5 @@ final String COLUMN_TITLE = 'title';
 final String COLUMN_QUANTITY = 'quantity';
 final String COLUMN_IMAGEURL = 'imageUrl';
 final String COLUMN_PRICE = 'price';
+final String CACHED_USER_DATA = 'CACHED_USER_DATA';
 const primaryColor = Color.fromRGBO(0, 197, 105, 1);

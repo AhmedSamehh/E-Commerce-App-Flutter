@@ -1,6 +1,6 @@
 import 'package:ECommerce/view/cart_view.dart';
 import 'package:ECommerce/view/home_view.dart';
-import 'package:ECommerce/view/profile_view.dart';
+import 'package:ECommerce/view/account_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +24,7 @@ class ControlViewModel extends GetxController {
         break;
       }
       case 2: {
-        _currentView = ProfileView();
+        _currentView = AccountView();
         break;
       }
     }

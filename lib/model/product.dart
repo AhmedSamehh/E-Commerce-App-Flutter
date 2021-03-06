@@ -1,4 +1,4 @@
-import 'package:ECommerce/core/util/extension.dart';
+import 'package:ECommerce/util/extension.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProductModel {
