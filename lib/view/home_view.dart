@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
-  final List<String> list = ["Shoes","Shoes","Shoes","Shoes","Shoes","Shoes","Shoes"];
 
   Widget _searchTextFormField(){
     return  Container(

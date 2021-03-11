@@ -8,11 +8,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ControlView extends GetWidget<AuthViewModel> {
+class ControlView extends GetWidget<ControlViewModel> {
 
   Widget _bottomNavBar() {
     return GetBuilder<ControlViewModel>(
-      init: ControlViewModel(),
+      init: Get.find(),
       builder: (controller) => BottomNavigationBar(
           currentIndex: controller.navigatorValue,
           selectedItemColor: Colors.black,
@@ -39,6 +39,7 @@ class ControlView extends GetWidget<AuthViewModel> {
       return (Get.find<AuthViewModel>().user == null)
           ? LoginView()
           : GetBuilder<ControlViewModel>(
+          init: ControlViewModel(),
           builder: (controller) =>
             Scaffold(
               bottomNavigationBar: _bottomNavBar(),
