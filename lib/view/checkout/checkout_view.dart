@@ -1,8 +1,11 @@
 import 'package:ECommerce/constant.dart';
+import 'package:ECommerce/core/view_model/cart_view_model.dart';
 import 'package:ECommerce/core/view_model/checkout_view_model.dart';
 import 'package:ECommerce/view/checkout/add_address_widget.dart';
-import 'package:ECommerce/view/checkout/delevery_time_widget.dart';
+import 'package:ECommerce/view/checkout/delivery_time_widget.dart';
 import 'package:ECommerce/view/checkout/summary_widget.dart';
+import 'package:ECommerce/view/widgets/custom_button.dart';
+import 'package:ECommerce/view/widgets/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -106,16 +109,30 @@ class CheckoutView extends StatelessWidget {
             ),
             controller.pages == Pages.DeliveryTime ? DeliveryTime()
            :controller.pages == Pages.AddAddress ? AddAddress()
-            :Summary()
+            :Summary(),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                width: MediaQuery.of(context).size.width*0.5,
+                padding: EdgeInsets.only(bottom: 10, right: 20, left: 20),
+                child: CustomButton(
+                    text: "NEXT",
+                    textColor: Colors.white,
+                    onPressed: () {
+                      controller.changeIndex(controller.index + 1);
+                    }
+                ),
+              ),
+            )
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.skip_next),
-          onPressed: () {
-            controller.changeIndex(controller.index + 1);
-          },
-          backgroundColor: inProgressColor,
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   child: Icon(Icons.skip_next),
+        //   onPressed: () {
+        //     controller.changeIndex(controller.index + 1);
+        //   },
+        //   backgroundColor: inProgressColor,
+        // ),
       ),
     );
   }
