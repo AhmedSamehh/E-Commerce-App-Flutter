@@ -33,6 +33,7 @@ dependencies:
   path: ^1.7.0
   shared_preferences: ^0.5.12+4
   flutter_svg: ^0.18.0
+  status_change: ^1.0.0
 
 
 

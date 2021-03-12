@@ -1,3 +1,4 @@
+import 'package:ECommerce/constant.dart';
 import 'package:ECommerce/core/view_model/account_view_model.dart';
 import 'package:ECommerce/core/view_model/control_view_model.dart';
 import 'package:ECommerce/view/auth/login_view.dart';
@@ -32,16 +33,16 @@ class AccountView extends StatelessWidget {
                       height: 120,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: Colors.red,
                         image: DecorationImage(
                           image:AssetImage(controller.user.img)
-
                         )
                       ),
                     )
                     :CircleAvatar(
+                      backgroundColor: primaryColor,
+                      foregroundColor: Colors.white,
                       radius: 60,
-                      child: Text("A", style: TextStyle(fontSize: 60)),
+                      child: Text(controller.user.name[0].toUpperCase(), style: TextStyle(fontSize: 60)),
                       // child: Text(controller.user.name[0].toUpperCase()),
                     ),
                     Column(

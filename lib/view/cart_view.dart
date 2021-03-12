@@ -1,6 +1,6 @@
 import 'package:ECommerce/constant.dart';
 import 'package:ECommerce/core/view_model/cart_view_model.dart';
-import 'package:ECommerce/core/view_model/home_view_model.dart';
+import 'package:ECommerce/view/checkout/checkout_view.dart';
 import 'package:ECommerce/view/widgets/custom_button.dart';
 import 'package:ECommerce/view/widgets/custom_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -119,7 +119,11 @@ class CartView extends StatelessWidget {
                     // SizedBox(width: 50),
                     Expanded(
                       child: CustomButton(
-                          text: "CHECKOUT", textColor: Colors.white, onPressed: () {}
+                          text: "CHECKOUT",
+                          textColor: Colors.white,
+                          onPressed: () {
+                            Get.to(CheckoutView());
+                          }
                       ),
                     )
                   ],

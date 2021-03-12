@@ -1,3 +1,4 @@
+import 'package:ECommerce/core/view_model/account_view_model.dart';
 import 'package:ECommerce/util/binding.dart';
 import 'package:ECommerce/core/view_model/cart_view_model.dart';
 import 'package:ECommerce/view/control_view.dart';
@@ -9,6 +10,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Get.put(CartViewModel());
+  // Get.put(AccountViewModel());
   runApp(MyApp());
 }
 
