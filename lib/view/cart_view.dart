@@ -5,6 +5,8 @@ import 'package:ECommerce/view/widgets/custom_button.dart';
 import 'package:ECommerce/view/widgets/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class CartView extends StatelessWidget {
@@ -14,7 +16,16 @@ class CartView extends StatelessWidget {
       init: Get.find(),
       builder: (controller) {
         return Scaffold(
-          body: Column(
+          body: controller.productsList.length == 0?
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset('lib/assets/empty_cart.svg', width: 200, height: 200),
+                SizedBox(height: 15),
+                CustomText(text: "Empty Cart",color: primaryColor, alignment: Alignment.center, fontSize: 30)
+              ],
+            )
+          :Column(
             children: [
               Expanded(
                 child: ListView.separated(

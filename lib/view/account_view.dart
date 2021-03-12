@@ -1,5 +1,7 @@
 import 'package:ECommerce/core/view_model/account_view_model.dart';
+import 'package:ECommerce/core/view_model/control_view_model.dart';
 import 'package:ECommerce/view/auth/login_view.dart';
+import 'package:ECommerce/view/control_view.dart';
 import 'package:ECommerce/view/widgets/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +123,7 @@ class AccountView extends StatelessWidget {
                   child: FlatButton(
                     onPressed: (){
                       controller.signOut();
-                      Get.offAll(LoginView());
+                      Get.offAll(ControlView());
                     },
                     child: ListTile(
                       title: CustomText(text: "Logout"),
