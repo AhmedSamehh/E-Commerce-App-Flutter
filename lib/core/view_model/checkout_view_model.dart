@@ -29,7 +29,7 @@ class CheckoutViewModel extends GetxController{
     if (i == _index) {
       return inProgressColor;
     } else if (index < _index) {
-      return Colors.green;
+      return primaryColor;
     } else {
       return todoColor;
     }

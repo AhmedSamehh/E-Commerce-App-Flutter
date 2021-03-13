@@ -22,8 +22,14 @@ class CheckoutView extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.white,
           elevation: 0.0,
+          leading: GestureDetector(
+            onTap: (){
+              Get.back();
+            },
+            child: Icon(Icons.arrow_back_ios_rounded, color: Colors.black)
+          ),
           title: Text(
-            "CheckOut",
+            "Checkout",
             style: TextStyle(
               color: Colors.black,
             ),
@@ -33,7 +39,7 @@ class CheckoutView extends StatelessWidget {
         body: Column(
           children: [
             Container(
-              height: 100,
+              height: 105,
               child: StatusChange.tileBuilder(
                 theme: StatusChangeThemeData(
                   direction: Axis.horizontal,
@@ -64,7 +70,7 @@ class CheckoutView extends StatelessWidget {
                           child: Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.green,
+                              color: primaryColor,
                             ),
                           ),
                         ),
@@ -81,7 +87,7 @@ class CheckoutView extends StatelessWidget {
                     if (index > 0) {
                       if (index == controller.index) {
                         final prevColor = controller.getColor(index - 1);
-                        final color = controller.getColor(index);
+                        final color = primaryColor;
                         var gradientColors;
                         gradientColors = [
                           prevColor,
@@ -110,29 +116,36 @@ class CheckoutView extends StatelessWidget {
             controller.pages == Pages.DeliveryTime ? DeliveryTime()
            :controller.pages == Pages.AddAddress ? AddAddress()
             :Summary(),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Container(
-                width: MediaQuery.of(context).size.width*0.5,
-                padding: EdgeInsets.only(bottom: 10, right: 20, left: 20),
-                child: CustomButton(
-                    text: "NEXT",
-                    textColor: Colors.white,
-                    onPressed: () {
-                      controller.changeIndex(controller.index + 1);
-                    }
-                ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: Row(
+                children: [
+                  controller.index > 0?
+                  Expanded(
+                    child: CustomButton(
+                        text: "BACK",
+                        textColor: primaryColor,
+                        color: Colors.white,
+                        onPressed: () {
+                          controller.changeIndex(controller.index - 1);
+                        }
+                    ),
+                  ):Container(),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: CustomButton(
+                        text: "NEXT",
+                        textColor: Colors.white,
+                        onPressed: () {
+                          controller.changeIndex(controller.index + 1);
+                        }
+                    ),
+                  ),
+                ],
               ),
             )
           ],
         ),
-        // floatingActionButton: FloatingActionButton(
-        //   child: Icon(Icons.skip_next),
-        //   onPressed: () {
-        //     controller.changeIndex(controller.index + 1);
-        //   },
-        //   backgroundColor: inProgressColor,
-        // ),
       ),
     );
   }
@@ -141,5 +154,5 @@ class CheckoutView extends StatelessWidget {
 final _processes = [
   'Delivery',
   'Address',
-  'Summer',
+  'Summary',
 ];
