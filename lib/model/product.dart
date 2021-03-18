@@ -1,4 +1,4 @@
-import 'package:ECommerce/util/extension.dart';
+import 'package:ECommerce/util/hex_color_extension.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProductModel {

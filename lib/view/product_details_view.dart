@@ -11,12 +11,16 @@ import 'package:get/get.dart';
 
 class ProductDetailsView extends StatelessWidget {
   ProductModel product;
-
   ProductDetailsView({this.product});
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: Column(
         children: [
           Container(
@@ -101,7 +105,7 @@ class ProductDetailsView extends StatelessWidget {
                       children: [
                         CustomText(text: "PRICE", color: Colors.grey),
                         CustomText(
-                            text: product.price + " EGP", color: primaryColor
+                            text: product.price + " EGP", color: Colors.green
                         ),
                       ],
                     ),
@@ -119,7 +123,8 @@ class ProductDetailsView extends StatelessWidget {
                             imageUrl: product.imageUrl,
                             price: product.price,
                             quantity: 1
-                          )
+                          ),
+                          _scaffoldKey
                         );
                       }),
                     ),

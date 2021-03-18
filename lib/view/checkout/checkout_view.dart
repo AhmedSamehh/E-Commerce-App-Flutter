@@ -64,7 +64,7 @@ class CheckoutView extends StatelessWidget {
                     if (index <= controller.index) {
                       return DotIndicator(
                         size: 35.0,
-                        border: Border.all(color: Colors.green, width: 1),
+                        border: Border.all(color: primaryColor, width: 1),
                         child: Padding(
                           padding: const EdgeInsets.all(6.0),
                           child: Container(

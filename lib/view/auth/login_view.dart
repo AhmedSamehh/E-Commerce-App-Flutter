@@ -49,6 +49,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                 CustomTextFormField(
                   text: "E-mail",
                   hint: "ahmedwael@gmail.com",
+                  inputType: TextInputType.emailAddress,
                   onSaved: (value){
                     controller.email = value;
                   },
@@ -62,6 +63,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                 CustomTextFormField(
                   text: "Password",
                   hint: "********",
+                  isPassword: true,
                   onSaved: (value){
                     controller.password = value;
                   },

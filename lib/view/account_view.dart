@@ -1,7 +1,5 @@
 import 'package:ECommerce/constant.dart';
 import 'package:ECommerce/core/view_model/account_view_model.dart';
-import 'package:ECommerce/core/view_model/control_view_model.dart';
-import 'package:ECommerce/view/auth/login_view.dart';
 import 'package:ECommerce/view/control_view.dart';
 import 'package:ECommerce/view/widgets/custom_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,9 +45,9 @@ class AccountView extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        CustomText(text: controller.user.name),
+                        CustomText(text: controller.user.name.capitalize),
                         SizedBox(height: 10),
-                        CustomText(text: controller.user.email),
+                        CustomText(text: controller.user.email.capitalize),
                       ],
                     )
                   ]

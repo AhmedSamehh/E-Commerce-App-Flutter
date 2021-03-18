@@ -53,7 +53,7 @@ class CartView extends StatelessWidget {
                                   CustomText(
                                     text: controller.productsList[index].price +
                                         " EGP",
-                                    color: primaryColor,
+                                    color: Colors.green,
                                   ),
                                   SizedBox(height: 10),
                                   Row(
@@ -110,7 +110,7 @@ class CartView extends StatelessWidget {
                           CustomText(text: "TOTAL", color: Colors.grey),
                           GetBuilder<CartViewModel>(
                             builder: (controller) => CustomText(
-                                text: controller.totalPrice.toString(), color: primaryColor
+                                text: controller.totalPrice.toString(), color: Colors.green
                             ),
                           ),
                         ],
