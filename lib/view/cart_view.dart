@@ -27,6 +27,7 @@ class CartView extends StatelessWidget {
             )
           :Column(
             children: [
+              SizedBox(height: 10),
               Expanded(
                 child: ListView.separated(
                     itemCount: controller.productsList.length,

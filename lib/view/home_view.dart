@@ -78,8 +78,17 @@ class HomeView extends StatelessWidget {
                   children: [
                     Container(
                       height: 200,
-                      decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade300)),
-                      child: Image.network(controller.products[index].imageUrl, fit: BoxFit.fill)
+                      child: Card(
+                          semanticContainer: true,
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          child: Image.network(
+                            controller.products[index].imageUrl,
+                            fit: BoxFit.fill,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
                     ),
                     SizedBox(height: 5),
                     CustomText(text: controller.products[index].title),

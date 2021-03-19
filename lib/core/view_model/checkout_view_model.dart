@@ -11,16 +11,31 @@ class CheckoutViewModel extends GetxController{
   Pages get pages => _pages;
   Pages _pages = Pages.DeliveryTime;
 
+  String street1, street2, city, state, country;
+
+  GlobalKey<FormState> get formKey => _formKey;
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   void changeIndex(int i){
-    _index = i;
-    if (_index == 1) {
+    if (i <= 0) {
+      _pages = Pages.DeliveryTime;
+      _index = i;
+    }
+    else if (i == 1) {
       _pages = Pages.AddAddress;
+      _index = i;
     }
-    else if (_index == 2) {
-      _pages = Pages.Summary;
+    else if (i == 2) {
+      _formKey.currentState.save();
+      if(_formKey.currentState.validate()){
+        _pages = Pages.Summary;
+        _index = i;
+      }
     }
-    else if (_index == 3) {
+    else if (i == 3) {
+      _pages = Pages.DeliveryTime;
       Get.to(ControlView());
+      _index = 0;
     }
     update();
   }

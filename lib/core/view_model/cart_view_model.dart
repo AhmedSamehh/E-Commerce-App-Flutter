@@ -69,6 +69,7 @@ class CartViewModel extends GetxController {
       _totalPrice -= double.parse(_productsList[index].price);
       dbHelper.updateProduct(_productsList[index]);
       if( _productsList[index].quantity == 0){
+        dbHelper.removeProduct(_productsList[index]);
         _productsList.removeAt(index);
       }
     }

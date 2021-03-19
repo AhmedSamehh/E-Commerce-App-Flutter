@@ -20,13 +20,12 @@ class CustomTextFormField extends StatelessWidget{
         children: [
           TextFormField(
             decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
-              ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: primaryColor),
               ),
-
+              border:  OutlineInputBorder(
+                borderSide: BorderSide(color: primaryColor),
+              ),
               labelText: text,
               labelStyle: TextStyle(color: primaryColor),
               hintText: hint,
@@ -37,6 +36,7 @@ class CustomTextFormField extends StatelessWidget{
             keyboardType: inputType,
             onSaved: onSaved,
             validator: validator,
+            textCapitalization: TextCapitalization.sentences,
           ),
         ],
       ),
