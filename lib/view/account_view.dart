@@ -8,6 +8,40 @@ import 'package:get/get.dart';
 
 class AccountView extends StatelessWidget {
 
+
+  showAlertDialog(BuildContext context, AccountViewModel controller) {
+
+    Widget cancelButton = FlatButton(
+      child: Text("Cancel"),
+      onPressed:  () {
+        Get.back();
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text("Logout"),
+      onPressed:  () {
+        controller.signOut();
+        Get.offAll(() =>ControlView());
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Logout Confirmation"),
+      content: Text("Are you sure you want to logout?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AccountViewModel>(
@@ -120,10 +154,7 @@ class AccountView extends StatelessWidget {
                 SizedBox(height: 10),
                 Card(
                   child: FlatButton(
-                    onPressed: (){
-                      controller.signOut();
-                      Get.offAll(ControlView());
-                    },
+                    onPressed:(){ showAlertDialog(context, controller);},
                     child: ListTile(
                       title: CustomText(text: "Logout"),
                       leading: Icon(Icons.logout),

@@ -73,11 +73,12 @@ class HomeView extends StatelessWidget {
                 Get.to(ProductDetailsView(product: controller.products[index]));
               },
               child: Container(
-                width: MediaQuery.of(context).size.width*0.4,
+                width: MediaQuery.of(context).size.width*0.42,
                 child: Column(
                   children: [
                     Container(
                       height: 200,
+                      width: 200,
                       child: Card(
                           semanticContainer: true,
                           clipBehavior: Clip.antiAliasWithSaveLayer,
